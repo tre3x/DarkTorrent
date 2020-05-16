@@ -23,7 +23,12 @@
         </div>
         <form action ="/click" method = 'POST' enctype="multipart/form-data" style="text-align:center;margin-top: 40px;">
             <p>Enter Proxy Choice : </p>
-            <input type = "text" name ="choice">
+            <!--<input type = "text" name ="choice">-->
+            <select name="choice">
+                <option value="1">Proxy1</option>
+                <option value="2">Proxy2</option>
+                <option value="3">Proxy3</option>
+            </select> 
             {% if properchoice == False %}
             <p>Enter proper choice. :3</p>
             {% endif %}

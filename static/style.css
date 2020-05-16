@@ -4,7 +4,7 @@ body {
     background-size: cover;
     height: 100%;
 }
-p,h1,h2,h5, h6, input{
+p,h1,h2,h5, h6, input, option, select{
     font-family: 'Press Start 2P', cursive;
     color: green;
 }
