@@ -20,10 +20,12 @@ def click():
         choice = int(choice) - 1
         print(choice, query)
         datalist = core.linkof(query, choice)
+        length = len(datalist)
         print(datalist)
         if(datalist == []):
             return render_template("index.html", dataset = datalist, clicked = True, propersearch = False, kaase = choice)
-        return render_template("index.html", dataset = datalist, clicked = True, kase = choice)
+        return render_template("index.html", dataset = datalist, clicked = True, kase = choice, lent = int(length))
 
+app.run()
 
 
