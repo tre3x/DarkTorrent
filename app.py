@@ -26,6 +26,6 @@ def click():
             return render_template("index.html", dataset = datalist, clicked = True, propersearch = False, kaase = choice)
         return render_template("index.html", dataset = datalist, clicked = True, kase = choice, lent = int(length))
 
-app.run()
+
 
 
