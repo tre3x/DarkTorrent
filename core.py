@@ -19,11 +19,8 @@ def linkof(query, choice):
     query = query.replace(' ', '+')
     page = 0
     orderby = 99
-    if (choice == 0):
-        link = url[:-2] + "/proxy/go.php?url=s/?q=" + query + \
-            "&page=" + str(page) + "&orderby" + str(orderby)
-    if(choice != 0):
-        link = url[:-2] + "/search/" + query + \
+    
+    link = url[:-2] + "/search/" + query + \
             "/" + str(page) + "/" + str(orderby) +"/0"
     print(link)
     
@@ -44,7 +41,7 @@ def linkof(query, choice):
                 if (div):
                     link = div.find("a")
                     name = link.contents[0]
-                    redirectlink = (url[:-2] + link['href'])
+                    redirectlink = (link['href'])
 
                 font = td.find("font", {"class": "detDesc"})
 
