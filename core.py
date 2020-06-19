@@ -16,7 +16,6 @@ def linkof(query, choice):
             url = line.replace('Ã¬', 'ì')
             break
     fp.close()
-
     query = query.replace(' ', '+')
     page = 0
     orderby = 99
@@ -24,22 +23,24 @@ def linkof(query, choice):
         link = url[:-2] + "/proxy/go.php?url=s/?q=" + query + \
             "&page=" + str(page) + "&orderby" + str(orderby)
     if(choice != 0):
-        link = url[:-2] + "/s/?q=" + query + "&page=" + \
-            str(page) + "&orderby" + str(orderby)
+        link = url[:-2] + "/search/" + query + \
+            "/" + str(page) + "/" + str(orderby) +"/0"
     print(link)
-
+    
     res = requests.get(link)
     soup = bs4.BeautifulSoup(res.text, 'lxml')
 
     linklist = []
-
+    #print(soup)
     num = 0
-
+    
+   
     for table in soup.find_all("table", id="searchResult"):
         for tr in table.find_all("tr"):
             for td in tr.find_all("td"):
-
+                
                 div = td.find(class_="detName")
+                
                 if (div):
                     link = div.find("a")
                     name = link.contents[0]
@@ -58,48 +59,12 @@ def linkof(query, choice):
                 for a in td.find_all('a'):
                     if(a['href'][0:6] == 'magnet'):
                         linklist.append([name, redirectlink, a['href'], size])
-
+                
             if(num == 5):
                 break
             num = num + 1
 
+    
     return linklist
 
-
-'''
-def proxylist():
-    url = 'https://piratebay-proxy.org/'
-
-    res = requests.get(url)
-
-    soup = bs4.BeautifulSoup(res.text, 'lxml')
-
-    proxylist = []
-
-    for table in soup.find_all('table', id = "proxyList"):
-        for tr in table.find_all('tr'):
-            for a in tr.find_all('a'):
-                print(a['href'])
-                
-
-    return proxylist
-
-
-
-proxyarr = proxylist()
-myfile = "proxylist.txt"
-
-
-with open(myfile, "w") as f:
-    for line in proxyarr:
-        f.write(line + '\n')
-
-
-choice = int(input(("Enter Choice : ")))
-
-
-query = input("Enter query : ")
-
-linkarr = linkof(query, choice)
-print(linkarr)
-'''
+print(linkof('max', 2))
