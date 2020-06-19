@@ -17,15 +17,13 @@ def click():
         if (int(choice) > 3) or (int(choice) < 1 ):
             return render_template("index.html", properchoice = False)
         query = request.form['query']
+        number = request.form['number']
+        #print(number)
         choice = int(choice) - 1
-        print(choice, query)
-        datalist = core.linkof(query, choice)
+        #print(choice, query)
+        datalist = core.linkof(query, choice, number)
         length = len(datalist)
-        print(datalist)
+        #print(datalist)
         if(datalist == []):
             return render_template("index.html", dataset = datalist, clicked = True, propersearch = False, kaase = choice)
         return render_template("index.html", dataset = datalist, clicked = True, kase = choice, lent = int(length))
-
-
-
-

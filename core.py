@@ -4,15 +4,15 @@ import bs4
 import re
 
 
-def linkof(query, choice):
+def linkof(query, choice, number):
 
     choice = int(choice)
 
     fp = open("proxylist")
     for i, line in enumerate(fp):
-        print(i, choice)
+        #print(i, choice)
         if i == choice:
-            print("k")
+            #print("k")
             url = line.replace('Ã¬', 'ì')
             break
     fp.close()
@@ -22,7 +22,7 @@ def linkof(query, choice):
     
     link = url[:-2] + "/search/" + query + \
             "/" + str(page) + "/" + str(orderby) +"/0"
-    print(link)
+    #print(link)
     
     res = requests.get(link)
     soup = bs4.BeautifulSoup(res.text, 'lxml')
@@ -56,12 +56,11 @@ def linkof(query, choice):
                 for a in td.find_all('a'):
                     if(a['href'][0:6] == 'magnet'):
                         linklist.append([name, redirectlink, a['href'], size])
-                
-            if(num == 5):
+                      
+            if(num == int(number)):
                 break
             num = num + 1
 
     
     return linklist
 
-print(linkof('max', 2))
