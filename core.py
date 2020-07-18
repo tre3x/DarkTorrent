@@ -19,10 +19,12 @@ def linkof(query, choice, number):
     query = query.replace(' ', '+')
     page = 0
     orderby = 99
-    
-    link = url[:-2] + "/search/" + query + \
+    if(i == 0):
+        link = url[:-2] + "/search.php?q=" + str(query) + "&page="+ str(page) +"&orderby="+ str(orderby)
+    else:
+        link = url[:-2] + "/search/" + query + \
             "/" + str(page) + "/" + str(orderby) +"/0"
-    #print(link)
+        #print(link)
     
     res = requests.get(link)
     soup = bs4.BeautifulSoup(res.text, 'lxml')
@@ -61,6 +63,5 @@ def linkof(query, choice, number):
                 break
             num = num + 1
 
-    
     return linklist
 
