@@ -18,12 +18,17 @@ def linkof(query, choice, number):
     fp.close()
     page = 0
     orderby = 99
+
+    '''
+
+    ****If needed****
     if(i == 0):
         link = url[:-2] + "/search.php?q=" + str(query) + "&page="+ str(page) +"&orderby="+ str(orderby)
     else:
-        link = url[:-2] + "/search/" + query + \
-            "/" + str(page) + "/" + str(orderby) +"/0"
-        #print(link)
+    '''
+
+    link = url[:-2] + "/search/" + query + \
+        "/" + str(page) + "/" + str(orderby) +"/0"
     res = requests.get(link)
     soup = bs4.BeautifulSoup(res.text, 'lxml')
 
